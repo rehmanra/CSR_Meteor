@@ -12,4 +12,21 @@ Template.userPreferencesStats.events({
 		affectedRows = Meteor.call('updateUserProfilePreferences', user_preferences);
 
 	}
-})
+});
+
+Template.userDataTemplate.events({
+	"click #saveprofile": function (event, template) {
+		let userid = template.data._id;
+		//create JSON object to store in the user's profile JSON object
+		let roles = [$('#selectedRole').val()];
+		//call saveUserProfile with updated role
+		affectedRows = Meteor.call('updateUserProfile', userid, roles);
+	}
+});
+
+Template.userDataTemplate.onRendered(function () {
+	let roles = this.data.roles;
+	Array.from(this.find('#selectedRole').options).forEach(function (element) {
+		element.selected = roles.includes(element.value);
+	});
+});

@@ -2,6 +2,8 @@
 @author https://github.com/diego2013
 */
 
+userRoles = ['', 'public', 'reviewer', 'admin'];
+
 //######### =Template Names #########
 
 myScenariosTableView_templateName = 'myScenariosTableView';

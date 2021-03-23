@@ -41,8 +41,7 @@
 
 
 <!-- Template with the data associated to this user's profile -->
-<template name="userDataTemplate"> 
-
+<template name="userDataTemplate">
 		<p><strong>Username</strong> {{username}} </p>
 
 		<p><strong>User ID</strong> {{_id}} <span class="fa fa-question-circle sup_small_icon" title="This is a unique user identifier within the repository"></span></p>
@@ -50,10 +49,20 @@
 		<p><strong>Member since </strong>{{formatDate createdAt}}</p>
 
 		<p><strong>Email: </strong>{{getEmail emails}} <strong>Verified: </strong>{{isVerifiedEmail emails}}</p>
-
-		<p><strong>Roles: </strong>{{roles}}</p>
-
-
+		{{#if userHasRole 'admin'}}
+			<label for="selectedRole">Role:</label>
+			<select id="selectedRole">
+				{{#each userRoles}}
+				<option value="{{this}}" {{selectedRole}}>{{this}}</option>
+				{{/each}}
+			</select>
+			<button type="button" id="saveprofile" class="btn btn-tiny btn-mint" style="margin-bottom: 6px;">
+				<span class="fa fa-save"></span>
+				Save Role
+			</button>
+			{{else}}
+			<p><strong>Roles: </strong>{{roles}}</p>
+		{{/if}}
 </template>
 
 <!-- Template with stats about the user's contributons -->

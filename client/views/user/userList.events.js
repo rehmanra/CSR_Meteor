@@ -35,11 +35,10 @@ Template.userList.events({
 });
 
 /** User profile template
-*/ 
+*/
 Template.userProf.events({
-  "click #seeUser" : function(event){
-    event.preventDefault();
-    Router.go('/userProfile/'+event.target.name);
-  }
-
+    "click #seeUser": function (event, template) {
+        event.preventDefault();
+        Router.go('/userProfile/' + template.data._id);
+    }
 });

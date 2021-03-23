@@ -227,20 +227,21 @@ Uses Iron:router https://github.com/iron-meteor/iron-router
 
   this.route('userList');
 
-  this.route('userProfile' //, {data :function () { return userDTO.findOne({_id: this.userId} ) }}
-       //,{data :function () { return Meteor.user()}} //working code
-       // , { data: function(){return Meteor.users.findOne()} } //working code 
-       ,{data : function(){ return AllTheUsers.findOne({_id: Meteor.userId()}) }}
-      //,{data : function(){ return Meteor.users.findOne() }}//working code
-  );
+  this.route('userProfile', function () {
+      this.render('userProfile', {
+          data: function () {
+              return AllTheUsers.findOne({_id: Meteor.user()._id});
+          }
+      });
+  });
 
-  this.route('/userProfile/:_id', function(){
-      targetUser = AllTheUsers.findOne({_id: this.params._id.trim()});
-      if(targetUser==undefined || !Roles.userIsInRole(Meteor.user(), ['admin'])){
-        this.redirect('/');
-      }else{
-        this.render('userProfile', {data: targetUser});
-      }
+  this.route('/userProfile/:_id', function () {
+      let profileId = this.params._id.trim();
+      this.render('userProfile', {
+          data: function () {
+              return AllTheUsers.findOne({_id: profileId})
+          }
+      });
   });
     
   this.route('FeedbackForm'); //feedback form

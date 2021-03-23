@@ -157,4 +157,17 @@ Meteor.methods({
     // update is not returning correctly the number of updated rows
 
   }
+  ,updateUserProfile : function(userid, roles){
+    ar = Meteor.users.update({_id: userid}, {$set: {"roles": roles}},
+        function(error, affected_docs){
+          if (error){
+            console.log(error)
+          }
+        }
+    );
+
+    // return ar;//https://github.com/meteor/meteor/issues/3349
+    // update is not returning correctly the number of updated rows
+
+  }
 });

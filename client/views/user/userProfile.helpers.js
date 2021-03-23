@@ -2,12 +2,9 @@
 */
 
  Template.userProfile.helpers({
-   userLoggedIn : function(){
-     return Meteor.userId();
-   }/*, 
-   userData : function(){
-     return userDTO;
-   }*/
+   userLoggedIn : function() {
+       return Meteor.userId();
+   }
  });
 
  Template.userDataTemplate.helpers({
@@ -24,7 +21,10 @@
         return Meteor.user().emails[0].verified;
       else
         return 'not applicable';
-    }
+    },
+     userRoles: function () {
+         return userRoles;
+     }
  });
 
 Template.userPreferencesStats.helpers({
