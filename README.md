@@ -1,3 +1,24 @@
+LOCAL SETUP as of 1/17/22
+===========
+Install Meteor Version 1.3.2.4<br>
+curl "https://install.meteor.com/?release=1.3.2.4" | sh
+
+Run Application<br>
+NODE_TLS_REJECT_UNAUTHORIZED=0 meteor
+
+oAuth Setup<br>
+Follow Directions Under "Sign In" for configuring Google oAuth Provider<br>
+After completing, sign in with a Google Account<br>
+
+Set Admin Role for a User<br>
+With application running from previous step, in a new terminal window, run:<br>
+meteor mongo<br>
+
+db.users.find()<br>
+You should get a response with "_id" : "someId" <br>
+Run the following command, swapping "someId" with the id found in the previous step:<br>
+db.users.update({_id:"someId"},{$push:{roles:{$each:["admin"]}}})
+<br><br>
 Clinical Scenario Repository
 ============================
 
