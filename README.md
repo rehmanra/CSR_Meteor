@@ -1,5 +1,5 @@
 LOCAL SETUP as of 1/17/22
-===========
+=========================
 Install Meteor Version 1.3.2.4<br>
 curl "https://install.meteor.com/?release=1.3.2.4" | sh
 
@@ -19,6 +19,7 @@ You should get a response with "_id" : "someId" <br>
 Run the following command, swapping "someId" with the id found in the previous step:<br>
 db.users.update({_id:"someId"},{$push:{roles:{$each:["admin"]}}})
 <br><br>
+
 Clinical Scenario Repository
 ============================
 
